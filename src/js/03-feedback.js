@@ -27,7 +27,14 @@ function onFormInput(e) {
 }
 function onFormSubmit(e) {
   e.preventDefault();
-  console.log(formData);
+
+  if (input.value === '' || textarea.value === '') {
+    alert('Заповніть всі поля');
+    return;
+  } else {
+    console.log(formData);
+  }
+
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
@@ -43,3 +50,4 @@ function onFormReturn(e) {
     textarea.value = parsedData.message;
   }
 }
+
