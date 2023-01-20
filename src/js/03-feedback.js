@@ -4,7 +4,10 @@ const form = document.querySelector('.feedback-form');
 const input = document.querySelector('.feedback-form input');
 const textarea = document.querySelector('.feedback-form textarea');
 
-const formData = { email: '', message: '' };
+
+const savedMessage = localStorage.getItem('feedback-form-state');
+  const parsedData = JSON.parse(savedMessage);
+const formData = parsedData || { email: '', message: '' };
 
 form.addEventListener('submit', onFormSubmit);
 input.addEventListener('input', onInput);
@@ -39,10 +42,7 @@ function onFormSubmit(e) {
   localStorage.removeItem('feedback-form-state');
 }
 function onFormReturn(e) {
-  const savedMessage = localStorage.getItem(
-    'feedback-form-state',
-    JSON.stringify(formData)
-  );
+  const savedMessage = localStorage.getItem('feedback-form-state');
   const parsedData = JSON.parse(savedMessage);
 
   if (parsedData) {
